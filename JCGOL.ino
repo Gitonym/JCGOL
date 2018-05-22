@@ -217,24 +217,15 @@ void drawMenu() {
 
     if (selectorHeight == 1) {
       if (arduboy.justPressed(A_BUTTON)) {
-        screen -= 1;
-        arduboy.setFrameRate(frameRate);
-        arduboy.clear();
         initCells();
-        drawCells();
-        arduboy.display();
       }
     }
 
     if (selectorHeight == 2) {
       if (arduboy.justPressed(A_BUTTON)) {
-        screen -= 1;
-        arduboy.setFrameRate(frameRate);
         for (int i = 0; i < 512; i++) {
           cellState[i] = false;
         }
-        arduboy.clear();
-        arduboy.display();
       }
     }
 
@@ -276,11 +267,12 @@ void drawMenu() {
       }
     }
 
-    if (selectorHeight < 7) {
+    if (selectorHeight < 7 and screen == 1) {
       arduboy.drawRect(0, (selectorHeight * 5) + 1, 2, 2, WHITE);
     }
 
     if (selectorHeight == 7) {
+      arduboy.drawRect(0, 38, 2, 2, WHITE);
       arduboy.drawFastHLine((selectorX * 6) + 6, 49, 4, WHITE);
       if (arduboy.justPressed(RIGHT_BUTTON)) {
         selectorX = (((selectorX + 1) % 9) + 9) % 9;
@@ -294,6 +286,7 @@ void drawMenu() {
     }
 
     if (selectorHeight == 8) {
+      arduboy.drawRect(0, 52, 2, 2, WHITE);
       arduboy.drawFastHLine((selectorX * 6) + 6, 63, 4, WHITE);
       if (arduboy.justPressed(RIGHT_BUTTON)) {
         selectorX = (((selectorX + 1) % 9) + 9) % 9;
